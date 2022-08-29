@@ -1,0 +1,15 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Create Booking
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{% url 'hotelinfo_booking_create_urlpattern'%}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button button-primary">Create Booking</button>
+    </form>
+{% endblock %}

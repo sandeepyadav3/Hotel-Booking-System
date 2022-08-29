@@ -1,0 +1,44 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Identity Type - {{ identitytype }}
+{% endblock %}
+
+{% block content %}
+<article>
+  <div class="row">
+  <div class="offset-by-two eight columns">
+    <h2>{{ identitytype }}</h2>
+    <ul class="inline">
+        {% if perms.hotelinfo.change_identitytype %}
+        <li>
+          <a
+              href="{{ identitytype.get_update_url }}"
+              class="button button-primary">
+            Edit Identity Type</a></li>
+        {% endif %}
+        {% if perms.hotelinfo.delete_identitytype %}
+        <li>
+          <a
+              href="{{ identitytype.get_delete_url }}"
+              class="button button-primary">
+            Delete Identity Type</a></li>
+        {% endif %}
+    </ul>
+    <section>
+        <table>
+            <tr>
+                <th>Identity Type:</th>
+                <td>{{ identitytype.identity_type }}</td>
+            </tr>
+            <tr>
+                <th>Is Government Issued ID ?</th>
+                <td>{{ identitytype.government_issued_id }}</td>
+            </tr>
+        </table>
+    </section>
+
+  </div></div> <!-- row -->
+
+</article>
+{% endblock %}

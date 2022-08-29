@@ -1,0 +1,36 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Room Type List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.hotelinfo.add_roomtype %}
+    <a
+        href="{% url 'hotelinfo_room_type_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Room Type</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Room Type List</h2>
+    {% if perms.hotelinfo.add_roomtype %}
+    <div class="mobile">
+      <a
+          href="{% url 'hotelinfo_room_type_create_urlpattern'  %}"
+          class="button button-primary">
+        Create New Room Type</a>
+    </div>
+    {% endif %}
+  <ul>
+    {% for room_type in roomtype_list %}
+      <li>
+        <a href="{{ room_type.get_absolute_url }}">
+          {{ room_type }}</a>
+      </li>
+    {% empty %}
+      <li><em>There are currently no room types available.</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

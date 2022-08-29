@@ -1,0 +1,61 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Room - {{ room }}
+{% endblock %}
+
+{% block content %}
+<article>
+  <div class="row">
+  <div class="offset-by-two eight columns">
+    <h2>{{ room }}</h2>
+    <ul class="inline">
+        {% if perms.hotelinfo.change_room %}
+        <li>
+          <a
+              href="{{ room.get_update_url }}"
+              class="button button-primary">
+            Edit Room</a></li>
+        {% endif %}
+        {% if perms.hotelinfo.delete_room %}
+        <li>
+          <a
+              href="{{ room.get_delete_url }}"
+              class="button button-primary">
+            Delete Room</a></li>
+        {% endif %}
+    </ul>
+    <section>
+        <table>
+            <tr>
+                <th>Room Number:</th>
+                <td>{{ room.room_number }}</td>
+            </tr>
+            <tr>
+                <th>Floor Number:</th>
+                <td>{{ room.floor_number }}</td>
+            </tr>
+            <tr>
+                <th>Room Type:</th>
+                <td><a href="{{ room_type.get_absolute_url }}">{{ room_type }}</a></td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Room Availabilities</h3>
+        <ul>
+            {% for availability in availability_list %}
+                <li>
+                    <a href="{{ availability.get_absolute_url }}">{{ availability.check_in }} - {{ availability.check_out }}</a>
+                </li>
+            {% empty %}
+                <li><em>This room is currently unavailable.</em></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+  </div></div> <!-- row -->
+
+</article>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Booking List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.hotelinfo.add_booking %}
+      <a href="{% url 'hotelinfo_booking_create_urlpattern' %}"
+         class="button button-primary">
+        Create New Booking</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Booking List</h2>
+    {% if perms.hotelinfo.add_booking %}
+    <div class="mobile">
+      <a href="{% url 'hotelinfo_booking_create_urlpattern' %}"
+         class="button button-primary">
+        Create New Booking</a>
+    </div>
+    {% endif %}
+    <ul>
+        {% for booking in booking_list %}
+            <li>
+                <a href="{{ booking.get_absolute_url }}">{{ booking }}</a>
+            </li>
+        {% empty %}
+            <li><em>There are currently no bookings available.</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

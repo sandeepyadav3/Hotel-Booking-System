@@ -1,0 +1,26 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Error Deleting Room
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Room</h2>
+        <p>
+            You may not delete room {{ room }}.  This
+            room is currently assigned to the following
+            availabilities:
+        </p>
+
+        <ul>
+            {% for availability in availabilities %}
+            <li><a href="{{ availability.get_absolute_url }}">{{ availability }}</a></li>
+            {%  endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'hotelinfo_room_list_urlpattern' %}">Room List</a>.
+        </p>
+    </div>
+{% endblock %}

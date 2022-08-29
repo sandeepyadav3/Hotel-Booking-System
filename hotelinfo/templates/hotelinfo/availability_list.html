@@ -1,0 +1,36 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Availability List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.hotelinfo.add_availability %}
+    <a
+        href="{% url 'hotelinfo_availability_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Availability</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Availability List</h2>
+    {% if perms.hotelinfo.add_availability %}
+    <div class="mobile">
+      <a
+          href="{% url 'hotelinfo_availability_create_urlpattern'  %}"
+          class="button button-primary">
+        Create New Availability</a>
+    </div>
+    {% endif %}
+  <ul>
+    {% for availability in availability_list %}
+      <li>
+        <a href="{{ availability.get_absolute_url }}">
+          {{ availability }}</a>
+      </li>
+    {% empty %}
+      <li><em>There are currently no rooms available.</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Update Identity Type
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ identitytype.get_update_url }}"
+        method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button button-primary">Update Identity Type</button>
+    </form>
+{% endblock %}

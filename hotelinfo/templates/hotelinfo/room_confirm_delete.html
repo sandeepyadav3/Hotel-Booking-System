@@ -1,0 +1,21 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Delete Room
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ room.get_delete_url }}"
+        method="post">
+        {% csrf_token %}
+        <p>
+            Are you sure that you want to delete
+            room {{ room }}?
+        </p>
+        <a href="{{ room.get_absolute_url }}"
+            class="button button-primary">
+            Cancel</a>
+        <button type="submit" class="button button-primary">Delete Room</button>
+    </form>
+{% endblock %}

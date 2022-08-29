@@ -1,0 +1,48 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Availability - {{ availability }}
+{% endblock %}
+
+{% block content %}
+<article>
+  <div class="row">
+  <div class="offset-by-two eight columns">
+    <h2>{{ availability }}</h2>
+    <ul class="inline">
+        {% if perms.hotelinfo.change_availability %}
+        <li>
+          <a
+              href="{{ availability.get_update_url }}"
+              class="button button-primary">
+            Edit Availability</a></li>
+        {% endif %}
+        {% if perms.hotelinfo.delete_availability %}
+        <li>
+          <a
+              href="{{ availability.get_delete_url }}"
+              class="button button-primary">
+            Delete Availability</a></li>
+        {% endif %}
+    </ul>
+    <section>
+        <table>
+            <tr>
+                <th>Check-in Date:</th>
+                <td>{{ availability.check_in }}</td>
+            </tr>
+            <tr>
+                <th>Check-out Date:</th>
+                <td>{{ availability.check_out }}</td>
+            </tr>
+            <tr>
+                <th>Room:</th>
+                <td><a href="{{ room.get_absolute_url }}">{{ room }}</a></td>
+            </tr>
+        </table>
+    </section>
+
+  </div></div> <!-- row -->
+
+</article>
+{% endblock %}

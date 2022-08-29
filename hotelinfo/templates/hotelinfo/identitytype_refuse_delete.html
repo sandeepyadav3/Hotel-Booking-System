@@ -1,0 +1,26 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Error Deleting Identity Type
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Identity Type</h2>
+        <p>
+            You may not delete identity type {{ identitytype }}.  This
+            identity type is currently assigned to the following
+            customers:
+        </p>
+
+        <ul>
+            {% for customer in customers %}
+            <li><a href="{{ customer.get_absolute_url }}">{{ customer }}</a></li>
+            {%  endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'hotelinfo_identity_type_list_urlpattern' %}">Identity Type List</a>.
+        </p>
+    </div>
+{% endblock %}

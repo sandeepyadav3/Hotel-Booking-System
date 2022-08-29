@@ -1,0 +1,26 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Error Deleting Customer
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Customer</h2>
+        <p>
+            You may not delete customer {{ customer }}.  This
+            customer is currently has made the following
+            bookings:
+        </p>
+
+        <ul>
+            {% for booking in bookings %}
+            <li><a href="{{ booking.get_absolute_url }}">{{ booking }}</a></li>
+            {%  endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'hotelinfo_customer_list_urlpattern' %}">Customer List</a>.
+        </p>
+    </div>
+{% endblock %}

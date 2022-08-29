@@ -1,0 +1,21 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Delete Identity Type
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ identitytype.get_delete_url }}"
+        method="post">
+        {% csrf_token %}
+        <p>
+            Are you sure that you want to delete
+            identity type {{ roomtype }}?
+        </p>
+        <a href="{{ identitytype.get_absolute_url }}"
+            class="button button-primary">
+            Cancel</a>
+        <button type="submit" class="button button-primary">Delete Identity Type</button>
+    </form>
+{% endblock %}

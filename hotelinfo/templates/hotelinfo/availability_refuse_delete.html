@@ -1,0 +1,26 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Error Deleting Availability
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Error Deleting Availability</h2>
+        <p>
+            You may not delete availability {{ availability }}.  This
+            availability is currently linked to the following
+            bookings:
+        </p>
+
+        <ul>
+            {% for booking in bookings %}
+            <li><a href="{{ booking.get_absolute_url }}">{{ booking }}</a></li>
+            {%  endfor %}
+        </ul>
+
+        <p>
+            Return to <a href="{% url 'hotelinfo_availability_list_urlpattern' %}">Availability List</a>.
+        </p>
+    </div>
+{% endblock %}

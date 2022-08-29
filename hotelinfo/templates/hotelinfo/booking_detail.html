@@ -1,0 +1,44 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Booking - {{ booking }}
+{% endblock %}
+
+{% block content %}
+<article>
+  <div class="row">
+  <div class="offset-by-two eight columns">
+    <h2>{{ booking }}</h2>
+    <ul class="inline">
+        {% if perms.hotelinfo.change_booking %}
+        <li>
+          <a
+              href="{{ booking.get_update_url }}"
+              class="button button-primary">
+            Edit Booking</a></li>
+        {% endif %}
+        {% if perms.hotelinfo.delete_booking %}
+        <li>
+          <a
+              href="{{ booking.get_delete_url }}"
+              class="button button-primary">
+            Delete Booking</a></li>
+        {% endif %}
+    </ul>
+    <section>
+        <table>
+            <tr>
+                <th>Customer:</th>
+                <td><a href="{{ customer.get_absolute_url }}">{{ customer }}</a></td>
+            </tr>
+            <tr>
+                <th>Room Details:</th>
+                <td><a href="{{ room_availability.get_absolute_url }}">{{ room_availability }}</a></td>
+            </tr>
+        </table>
+    </section>
+
+  </div></div> <!-- row -->
+
+</article>
+{% endblock %}

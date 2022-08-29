@@ -1,0 +1,36 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Customer List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.hotelinfo.add_customer %}
+    <a
+        href="{% url 'hotelinfo_customer_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Customer</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Customer List</h2>
+    {% if perms.hotelinfo.add_customer %}
+    <div class="mobile">
+      <a
+          href="{% url 'hotelinfo_customer_create_urlpattern'  %}"
+          class="button button-primary">
+        Create New Customer</a>
+    </div>
+    {% endif %}
+  <ul>
+    {% for customer in customer_list %}
+      <li>
+        <a href="{{ customer.get_absolute_url }}">
+          {{ customer }}</a>
+      </li>
+    {% empty %}
+      <li><em>There are currently no Customers available.</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

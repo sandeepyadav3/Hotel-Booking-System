@@ -1,0 +1,36 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Identity Type List
+{% endblock %}
+
+{% block create_button %}
+    {% if perms.hotelinfo.add_identitytype %}
+    <a
+        href="{% url 'hotelinfo_identity_type_create_urlpattern'  %}"
+        class="button button-primary">
+      Create New Identity Type</a>
+    {% endif %}
+{% endblock %}
+
+{% block org_content %}
+  <h2>Identity Type List</h2>
+    {% if perms.hotelinfo.add_identitytype %}
+    <div class="mobile">
+      <a
+          href="{% url 'hotelinfo_identity_type_create_urlpattern'  %}"
+          class="button button-primary">
+        Create New Identity Type</a>
+    </div>
+    {% endif %}
+  <ul>
+    {% for identity_type in identitytype_list %}
+      <li>
+        <a href="{{ identity_type.get_absolute_url }}">
+          {{ identity_type }}</a>
+      </li>
+    {% empty %}
+      <li><em>There are currently no Identity types available.</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

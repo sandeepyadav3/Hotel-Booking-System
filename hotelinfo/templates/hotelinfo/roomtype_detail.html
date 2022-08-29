@@ -1,0 +1,44 @@
+{% extends 'hotelinfo/base.html' %}
+
+{% block title %}
+    Room Type - {{ roomtype }}
+{% endblock %}
+
+{% block content %}
+<article>
+  <div class="row">
+  <div class="offset-by-two eight columns">
+    <h2>{{ roomtype }}</h2>
+    <ul class="inline">
+        {% if perms.hotelinfo.change_roomtype %}
+        <li>
+          <a
+              href="{{ roomtype.get_update_url }}"
+              class="button button-primary">
+            Edit Room Type</a></li>
+        {% endif %}
+        {% if perms.hotelinfo.delete_roomtype %}
+        <li>
+          <a
+              href="{{ roomtype.get_delete_url }}"
+              class="button button-primary">
+            Delete Room Type</a></li>
+        {% endif %}
+    </ul>
+    <section>
+        <table>
+            <tr>
+                <th>Room Style/Type:</th>
+                <td>{{ roomtype.room_type }}</td>
+            </tr>
+            <tr>
+                <th>Room Area (in sq-ft):</th>
+                <td>{{ roomtype.room_area }}</td>
+            </tr>
+        </table>
+    </section>
+
+  </div></div> <!-- row -->
+
+</article>
+{% endblock %}
